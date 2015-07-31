@@ -1,0 +1,35 @@
+<script src="bower_components/d3/d3.min.js"></script>
+<script src="bower_components/vega/vega.min.js"></script>
+
+<polymer-element
+    name="vega-plot"
+    attributes="jsonsrc" >
+
+<template>
+
+<div id="vis"></div>
+
+</template>
+
+<script>
+
+Polymer({
+    jsonsrc: "",
+    render: function () {
+        console.log("vega-plot render, this.$.vis = ", this.$.vis);
+        vg.parse.spec(this.jsonsrc, function(chart) { chart({el:this.$.vis}).update(); });
+    },
+    domReady: function () {
+        this.render()
+    },
+    sourceChanged: function () {
+        this.render()
+    },
+    blockChanged: function () {
+        this.render()
+    }
+})
+
+</script>
+
+</polymer-element>
